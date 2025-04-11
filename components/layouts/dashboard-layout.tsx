@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -44,9 +45,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   ]
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-background">
       {/* Desktop Sidebar */}
-      <aside className="hidden w-64 border-r bg-white md:flex md:flex-col">
+      <aside className="hidden w-64 border-r bg-card md:flex md:flex-col">
         <div className="flex h-14 items-center border-b px-4">
           <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
             <FileText className="h-5 w-5 text-primary" />
@@ -60,10 +61,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <Link
                   href={route.href}
                   className={cn(
-                    "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium",
+                    "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                     pathname === route.href
                       ? "bg-primary/10 text-primary"
-                      : "text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                   )}
                 >
                   <route.icon className="h-4 w-4" />
@@ -81,7 +82,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </Avatar>
             <div className="grid gap-0.5 text-sm">
               <div className="font-medium">Aniruddha Adak</div>
-              <div className="text-xs text-gray-500">aniruddhadak80@gmail.com</div>
+              <div className="text-xs text-muted-foreground">aniruddhadak80@gmail.com</div>
             </div>
           </div>
         </div>
@@ -107,10 +108,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 href={route.href}
                 onClick={() => setIsMobileNavOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium",
+                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   pathname === route.href
                     ? "bg-primary/10 text-primary"
-                    : "text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                 )}
               >
                 <route.icon className="h-4 w-4" />
@@ -126,7 +127,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </Avatar>
               <div className="grid gap-0.5 text-sm">
                 <div className="font-medium">Aniruddha Adak</div>
-                <div className="text-xs text-gray-500">aniruddhadak80@gmail.com</div>
+                <div className="text-xs text-muted-foreground">aniruddhadak80@gmail.com</div>
               </div>
             </div>
           </div>
@@ -141,12 +142,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
-        <div className="flex h-14 items-center gap-4 border-b bg-white px-4 md:h-16 md:px-6">
+        <div className="flex h-14 items-center gap-4 border-b bg-card px-4 md:h-16 md:px-6">
           <Button variant="outline" size="icon" className="md:hidden" onClick={() => setIsMobileNavOpen(true)}>
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle Menu</span>
           </Button>
           <div className="ml-auto flex items-center gap-2">
+            <ThemeToggle />
             <Button variant="outline" size="sm" className="hidden md:flex">
               <LogOut className="mr-2 h-4 w-4" />
               Log out

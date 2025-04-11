@@ -32,13 +32,25 @@ export function EarningsChart() {
         >
           <defs>
             <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#6366F1" stopOpacity={0.3} />
+              <stop offset="5%" stopColor="#6366F1" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#6366F1" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" tickLine={false} axisLine={false} tick={{ fontSize: 12 }} />
-          <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 12 }} tickFormatter={(value) => `$${value}`} />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-muted" />
+          <XAxis
+            dataKey="name"
+            tickLine={false}
+            axisLine={false}
+            tick={{ fontSize: 12 }}
+            className="text-muted-foreground"
+          />
+          <YAxis
+            tickLine={false}
+            axisLine={false}
+            tick={{ fontSize: 12 }}
+            tickFormatter={(value) => `${value}`}
+            className="text-muted-foreground"
+          />
           <Tooltip
             content={({ active, payload }) => {
               if (active && payload && payload.length) {
